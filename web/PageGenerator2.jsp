@@ -21,7 +21,13 @@
                 <%
                     for(int j=0; j<3;j++){
                 %>
-                <td>xxx</td>
+                <td>
+                    <%
+                        for(int k=0; k < 3; k++){
+                            out.println("Check on this at " + k + " and " + j + " and " + i +"!");
+                        }                     
+                    %>
+                </td>
                 <%
                   }  
                 %>
