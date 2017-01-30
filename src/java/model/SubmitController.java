@@ -33,17 +33,21 @@ public class SubmitController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String c = request.getParameter("inputName");
+        String c;
         WelcomeService ws = new WelcomeService();
         PrintWriter out = response.getWriter();
+        out.println("<html><head><title>Response!</title></head><body>");
         try{
-            
+            c = request.getParameter("inputName");  
+            if(c == null || c== ""){
+                new Exception("The box you have entered is invalid.");
+                c = "";
+            }
+            out.println("<h1>" + ws.getGreetingForTime(c) + "</h1>");
         }
         catch(Exception e){
-            
+            out.println(e);
         }
-        out.println("<html><head><title>Response!</title></head><body>");
-        out.println("<h1>" + ws.getGreetingForTime(c) + "</h1>");
         out.println("</body></html>");
         // This object lets you forward both the request and response
         // objects to a destination page
